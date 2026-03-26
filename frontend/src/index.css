@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;700&display=swap');
+
+:root {
+  --color-neon-green: #00e5a0;
+  --color-danger-red: #f87171;
+  --color-warning-yellow: #fbbf24;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background-color: #05080f; /* Strict user requirement */
+  color: #e2e8f0;
+}

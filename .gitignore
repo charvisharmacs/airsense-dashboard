@@ -1,0 +1,20 @@
+# Node dependencies
+frontend/node_modules/
+frontend/dist/
+frontend/.npm/
+
+# Python dependencies
+backend/venv/
+backend/__pycache__/
+*.pyc
+.pytest_cache/
+
+# Environment
+.DS_Store
+.env
+.env.local
+
+# IDE/Logs
+.vscode/
+npm-debug.log
+yarn-error.log

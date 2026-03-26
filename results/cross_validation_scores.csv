@@ -1,0 +1,4 @@
+Model,CV_Mean
+XGBoost,0.8519101050760938
+Random Forest,0.8303608877707671
+Logistic Regression,0.6860489882854099
