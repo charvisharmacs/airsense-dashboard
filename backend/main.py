@@ -52,26 +52,44 @@ def health():
 @app.post("/predict")
 def predict(data: PollutantInput):
     try:
-        # Create empty row
-        row = {f: 0.0 for f in feat_names}
-
-        # Map input
-        mapping = {
-            "PM2.5": data.PM2_5,
-            "PM10": data.PM10,
-            "NO2": data.NO2,
-            "SO2": data.SO2,
-            "CO": data.CO,
-            "O3": data.O3,
-            "Temperature": data.Temperature,
-            "Precipitation": data.Precipitation,
-            "WindSpeed": data.WindSpeed,
+        # Base parameters
+        temp = data.Temperature
+        precip = data.Precipitation
+        wind = data.WindSpeed
+        
+        pollutants = {
+            "PM2.5": data.PM2_5, "PM10": data.PM10, 
+            "NO2": data.NO2, "SO2": data.SO2, 
+            "CO": data.CO, "O3": data.O3
         }
 
-        # Fill values
-        for k, v in mapping.items():
-            if k in row:
-                row[k] = v
+        # Dynamically map missing sensor values to the mathematical Mean of the training distribution
+        # to prevent XGBoost from interpreting omitted variables as extreme edge-case outliers
+        row = {feat_names[i]: float(scaler.mean_[i]) for i in range(len(feat_names))}
+        
+        # Populate Base Weather
+        if 'Temperature' in row: row['Temperature'] = temp
+        if 'Temp_Min' in row: row['Temp_Min'] = temp - 2.0
+        if 'Temp_Max' in row: row['Temp_Max'] = temp + 2.0
+        if 'Precipitation' in row: row['Precipitation'] = precip
+        if 'WindSpeed' in row: row['WindSpeed'] = wind
+        if 'AQI' in row: row['AQI'] = max(data.PM2_5, data.PM10 * 0.5)
+
+        # Extrapolate Rolling, Lagging, and Interaction features mathematically
+        for p_name, p_val in pollutants.items():
+            for lag in [1, 3, 7]:
+                if f"{p_name}_lag{lag}" in row: row[f"{p_name}_lag{lag}"] = p_val
+            if f"{p_name}_roll7_mean" in row: row[f"{p_name}_roll7_mean"] = p_val
+
+            # Explicit Interaction Features
+            if f"{p_name}_x_Temperature" in row: row[f"{p_name}_x_Temperature"] = p_val * temp
+            if f"{p_name}_x_Temp_Min" in row: row[f"{p_name}_x_Temp_Min"] = p_val * (temp - 2.0)
+            if f"{p_name}_x_Temp_Max" in row: row[f"{p_name}_x_Temp_Max"] = p_val * (temp + 2.0)
+            if f"{p_name}_x_Precipitation" in row: row[f"{p_name}_x_Precipitation"] = p_val * precip
+            if f"{p_name}_x_WindSpeed" in row: row[f"{p_name}_x_WindSpeed"] = p_val * wind
+
+        # Special legacy interaction check
+        if 'Temp_PM25' in row: row['Temp_PM25'] = temp * data.PM2_5
 
         # Convert to dataframe
         X = pd.DataFrame([row])[feat_names]

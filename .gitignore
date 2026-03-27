@@ -18,3 +18,4 @@ backend/__pycache__/
 .vscode/
 npm-debug.log
 yarn-error.log
+node_modules
