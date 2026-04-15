@@ -165,7 +165,7 @@ export default function App() {
   const [isDarkMode, setIsDarkMode] = useState(true);
   
   const [form, setForm] = useState({
-    PM2_5: 0, PM10: 0, NO2: 0, SO2: 0, CO: 0, O3: 0, Temperature: 0, Precipitation: 0, WindSpeed: 0
+    PM2_5: "", PM10: "", NO2: "", SO2: "", CO: "", O3: "", Temperature: "", Precipitation: "", WindSpeed: ""
   });
   
   const [result, setResult] = useState(null);
@@ -226,7 +226,7 @@ export default function App() {
   };
 
   const handleChange = (e) => {
-    setForm(prev => ({ ...prev, [e.target.name]: e.target.value === "" ? 0 : Number(e.target.value) }));
+    setForm(prev => ({ ...prev, [e.target.name]: e.target.value === "" ? "" : Number(e.target.value) }));
   };
 
   const handlePrediction = async (e, customData = null) => {
@@ -426,6 +426,7 @@ export default function App() {
                       name={m.key}
                       value={form[m.key]}
                       onChange={handleChange}
+                      placeholder={`Enter ${m.label}`}
                       className={`w-full ${inputBg} border ${borderGlass} rounded-xl px-4 py-2.5 ${isDarkMode ? 'text-white' : 'text-slate-900'} font-mono focus:outline-none focus:border-[#00e5a0]/50 focus:ring-1 focus:ring-[#00e5a0]/50 transition-all shadow-inner`}
                     />
                   </div>
@@ -453,6 +454,7 @@ export default function App() {
                           name={m.key}
                           value={form[m.key]}
                           onChange={handleChange}
+                          placeholder="0"
                           className={`w-full bg-transparent ${textTitle} text-xl font-mono focus:outline-none`}
                         />
                         <span className={`${textSub} text-sm font-medium`}>{m.unit}</span>
