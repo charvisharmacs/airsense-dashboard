@@ -598,7 +598,7 @@ export default function App() {
 
       <footer className={`w-full border-t ${borderGlass} ${isDarkMode ? 'bg-[#05080f]/80' : 'bg-white/80'} backdrop-blur-xl py-8 mt-12 relative z-10`}>
         <div className="max-w-7xl mx-auto px-6 text-center">
-          <p className={`${textSub} text-sm font-medium tracking-wide`}>
+          <p className={`${isDarkMode ? 'text-slate-300' : 'text-slate-600'} text-sm font-medium tracking-wide`}>
             Environmental Intelligence System
           </p>
         </div>
