@@ -578,8 +578,8 @@ export default function App() {
                             </linearGradient>
                           </defs>
                           <CartesianGrid strokeDasharray="3 3" stroke={isDarkMode ? "#ffffff05" : "#00000005"} vertical={false} />
-                          <XAxis dataKey="month" stroke={isDarkMode ? "#475569" : "#94a3b8"} fontSize={11} tickLine={false} axisLine={false} />
-                          <YAxis stroke={isDarkMode ? "#475569" : "#94a3b8"} fontSize={11} tickLine={false} axisLine={false} />
+                          <XAxis dataKey="month" stroke={isDarkMode ? "#475569" : "#94a3b8"} fontSize={11} tickLine={false} axisLine={false} label={{ value: 'Month', position: 'insideBottomRight', offset: 0, fill: isDarkMode ? '#94a3b8' : '#64748b', fontSize: 10 }} />
+                          <YAxis stroke={isDarkMode ? "#475569" : "#94a3b8"} fontSize={11} tickLine={false} axisLine={false} label={{ value: 'Level', angle: -90, position: 'insideLeft', offset: 10, fill: isDarkMode ? '#94a3b8' : '#64748b', fontSize: 10 }} />
                           <Tooltip content={<CustomTooltip isDark={isDarkMode} />} />
                           <Area type="monotone" dataKey="pm25" stroke={result.risk_color} strokeWidth={2} fillOpacity={1} fill="url(#colorRisk)" />
                         </AreaChart>
