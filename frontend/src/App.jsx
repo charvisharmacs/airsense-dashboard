@@ -328,6 +328,8 @@ export default function App() {
             {/* The Requested Toggle Mode Button */}
             <button 
               onClick={() => setIsDarkMode(!isDarkMode)}
+              aria-label="Toggle dark mode"
+              aria-pressed={isDarkMode}
               className={`p-2 rounded-full transition-all ${isDarkMode ? 'bg-white/5 hover:bg-white/10 text-slate-300' : 'bg-slate-200 hover:bg-slate-300 text-slate-600'} shadow-inner`}
             >
               {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
@@ -362,6 +364,8 @@ export default function App() {
           
           <button 
             onClick={scrollToInputs}
+            aria-label="Scroll to analysis section"
+            role="button"
             className={`group relative inline-flex items-center justify-center gap-3 px-8 py-4 ${isDarkMode ? 'bg-white/5 hover:bg-white/10 border-white/10 text-white' : 'bg-slate-900 border-none text-white hover:bg-slate-800 shadow-xl'} border rounded-full font-medium text-lg transition-all hover:shadow-[0_0_30px_-5px_rgba(0,229,160,0.3)] backdrop-blur-md`}
           >
             Start Analysis
