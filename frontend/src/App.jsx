@@ -231,11 +231,19 @@ export default function App() {
 
   const handlePrediction = async (e, customData = null) => {
     if (e) e.preventDefault();
+
+    const payload = customData || form;
+    
+    // Form Validation: Ensure pollutants are not negative
+    const hasNegativePollutant = metrics.pollutants.some(m => payload[m.key] !== "" && Number(payload[m.key]) < 0);
+    if (hasNegativePollutant) {
+      setError("Pollutant values cannot be negative. Please correct your inputs.");
+      return;
+    }
+
     setLoading(true);
     setError(null);
     setResult(null);
-
-    const payload = customData || form;
 
     try {
       const res = await axios.post(`${baseAPI}/predict`, payload);
