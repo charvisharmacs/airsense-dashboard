@@ -480,11 +480,11 @@ export default function App() {
         </motion.div>
 
         {/* 🟡 3. ACTION BUTTON */}
-        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
+        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-2xl mx-auto">
           <button
             onClick={handlePrediction}
             disabled={loading}
-            className={`group relative w-full md:w-2/3 lg:w-1/2 mx-auto overflow-hidden rounded-2xl p-1 disabled:opacity-70 disabled:cursor-not-allowed block shadow-[0_0_40px_-10px_rgba(0,229,160,0.3)] transition-all hover:-translate-y-1 ${isDarkMode ? 'hover:shadow-[0_0_60px_-10px_rgba(0,229,160,0.5)]' : ''}`}
+            className={`group relative w-full sm:flex-1 overflow-hidden rounded-2xl p-1 disabled:opacity-70 disabled:cursor-not-allowed block shadow-[0_0_40px_-10px_rgba(0,229,160,0.3)] transition-all hover:-translate-y-1 ${isDarkMode ? 'hover:shadow-[0_0_60px_-10px_rgba(0,229,160,0.5)]' : ''}`}
           >
             <div className="absolute inset-0 bg-gradient-to-r from-[#00e5a0] via-blue-500 to-[#00e5a0] bg-[length:200%_auto] animate-[gradient_3s_linear_infinite]" />
             <div className={`relative ${isDarkMode ? 'bg-[#05080f]' : 'bg-white'} px-8 py-5 rounded-xl flex items-center justify-center gap-3 transition-all ${isDarkMode ? 'group-hover:bg-opacity-90' : 'group-hover:bg-opacity-95'} backdrop-blur-3xl`}>
@@ -493,6 +493,19 @@ export default function App() {
                 {loading ? "Processing AI Insight..." : "Run Live Analysis"}
               </span>
             </div>
+          </button>
+
+          <button
+            onClick={() => {
+              setForm({ PM2_5: "", PM10: "", NO2: "", SO2: "", CO: "", O3: "", Temperature: "", Precipitation: "", WindSpeed: "" });
+              setResult(null);
+              setError(null);
+              setSelectedCity("");
+            }}
+            disabled={loading}
+            className={`w-full sm:w-auto px-8 py-5 rounded-xl font-bold text-lg tracking-wide transition-all border ${isDarkMode ? 'bg-white/5 text-slate-300 hover:bg-white/10 border-white/10 hover:text-white' : 'bg-slate-100 text-slate-600 border-slate-200 hover:bg-slate-200 hover:text-slate-900'} disabled:opacity-50 disabled:cursor-not-allowed hover:-translate-y-1`}
+          >
+            Reset
           </button>
         </motion.div>
 
