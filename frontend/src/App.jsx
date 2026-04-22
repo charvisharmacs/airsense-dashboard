@@ -164,6 +164,7 @@ export default function App() {
   const [selectedCity, setSelectedCity] = useState("Delhi");
   const [cityLoading, setCityLoading] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(true);
+  const [lastUpdated, setLastUpdated] = useState(null);
   
   const [form, setForm] = useState({
     PM2_5: "", PM10: "", NO2: "", SO2: "", CO: "", O3: "", Temperature: "", Precipitation: "", WindSpeed: ""
@@ -216,6 +217,7 @@ export default function App() {
       };
       
       setForm(liveData);
+      setLastUpdated(new Date().toLocaleTimeString());
       handlePrediction(null, liveData);
       
     } catch (err) {
@@ -393,6 +395,7 @@ export default function App() {
         >
           <div className={`text-xs ${textSub} font-semibold tracking-widest uppercase flex items-center gap-2`}>
             <Activity className="w-3 h-3 text-[#00e5a0]" /> Fetch live sensor data for Indian metropolises
+            {lastUpdated && <span className="ml-2 lowercase opacity-70">(updated {lastUpdated})</span>}
           </div>
           <div className="flex flex-wrap justify-center gap-3">
             {Object.keys(cityData).map(city => (
