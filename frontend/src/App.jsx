@@ -222,7 +222,7 @@ export default function App() {
       
     } catch (err) {
       console.error("Live fetch error", err);
-      setError("Failed to fetch LIVE sensor data from Open-Meteo satellites.");
+      setError("Failed to fetch LIVE sensor data. Please check your internet connection or try again later.");
     } finally {
       setCityLoading(false);
     }
