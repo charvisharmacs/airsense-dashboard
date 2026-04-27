@@ -1,31 +1,22 @@
+// React
 import { useState, useEffect, useRef } from "react";
+
+// Third-Party Libraries
 import axios from "axios";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  Wind, 
-  Thermometer, 
-  Droplets, 
-  Activity, 
-  ShieldAlert, 
-  AlertCircle, 
-  CheckCircle,
-  Loader2,
-  MapPin,
-  TrendingUp,
-  BrainCircuit,
-  ChevronDown,
-  Sun,
-  Moon
-} from "lucide-react";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
+import { 
+  Wind, Thermometer, Droplets, Activity, ShieldAlert, AlertCircle, 
+  CheckCircle, Loader2, MapPin, TrendingUp, BrainCircuit, ChevronDown, 
+  Sun, Moon
+} from "lucide-react";
 
+// Local Components & Config
+import CustomTooltip from "./components/CustomTooltip";
+import NetworkBackground from "./components/NetworkBackground";
 import { cityData, metrics } from "./config/constants";
 
 const baseAPI = "http://localhost:8001";
-
-import CustomTooltip from "./components/CustomTooltip";
-
-import NetworkBackground from "./components/NetworkBackground";
 
 export default function App() {
   const [selectedCity, setSelectedCity] = useState("Delhi");
