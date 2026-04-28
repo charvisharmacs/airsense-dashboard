@@ -1,5 +1,12 @@
 import { useEffect, useRef } from "react";
 
+/**
+ * Renders an animated network of connecting particles on a canvas background.
+ * Automatically handles resizing and respects user's reduced-motion preferences.
+ * 
+ * @param {Object} props
+ * @param {boolean} props.isDarkMode - Controls the color palette of the particles and lines.
+ */
 const NetworkBackground = ({ isDarkMode }) => {
   const canvasRef = useRef(null);
 
