@@ -35,6 +35,13 @@ Delhi, Mumbai, Bengaluru, Chennai, Hyderabad, Kolkata
   - Uses TailwindCSS V4, Framer Motion, and Recharts for a dynamic UI
 - `results/` – saved model comparison tables, cross‑validation scores, and plots
 
+## API Endpoints
+
+The FastAPI backend exposes the following primary endpoints:
+
+- **`POST /predict`**
+  Accepts a JSON payload of environmental features (PM2.5, NO2, Temperature, etc.) and returns the calculated Risk Health Risk Index (RHRI) risk level, probability scores, and health precautions.
+
 ## Getting Started
 
 ### 1. Start the API Server
