@@ -45,7 +45,9 @@ The FastAPI backend exposes the following primary endpoints:
 ## Getting Started
 
 ### 1. Start the API Server
-Ensure you are running Python 3.8+
+
+Ensure you are running **Python 3.8+**.
+
 ```bash
 cd backend
 python3 -m venv venv
@@ -55,7 +57,9 @@ uvicorn main:app --port 8001 --reload
 ```
 
 ### 2. Start the AirSense AI Dashboard
-Ensure you have Node.js installed.
+
+Ensure you have **Node.js 18+** installed.
+
 ```bash
 cd frontend
 npm install
