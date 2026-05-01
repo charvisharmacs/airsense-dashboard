@@ -1,5 +1,9 @@
 # AirSense AI: Predictive Modeling and Analysis of Air Quality Impact on Respiratory Diseases
 
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 This project analyzes the relationship between air quality, meteorological factors,
 and respiratory health risk across major Indian cities using historical data (2016–2020).
 
