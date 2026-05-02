@@ -118,7 +118,14 @@ export default function App() {
     } catch (err) {
       console.error("Backend offline, engaging Bulletproof Fallback Demo:", err);
       
-      // Live Backup Fallback Calculator (so the UI never breaks during demos)
+      /**
+       * Live Backup Fallback Calculator
+       * 
+       * This mechanism ensures the dashboard remains 100% interactive during live demos
+       * or presentations even if the FastAPI backend server goes offline. 
+       * It intercepts the error and calculates a simulated risk score locally using 
+       * the exact same raw data payloads, maintaining the illusion of the full ML pipeline.
+       */
       const pm25 = payload.PM2_5 || form.PM2_5;
       const fakeRisk = pm25 > 150 ? 2 : pm25 > 60 ? 1 : 0;
       const fakeConfidence = Math.floor(Math.random() * 10) + 89; // 89-98%
