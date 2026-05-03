@@ -18,6 +18,27 @@ import { cityData, metrics } from "./config/constants";
 
 const baseAPI = "http://localhost:8001";
 
+const getInsightText = (level) => {
+  if (level === 0) return "Air quality is safe";
+  if (level === 1) return "Moderate exposure risk detected";
+  return "High pollution – precaution advised";
+};
+
+const getInsightIcon = (level) => {
+  if (level === 0) return <CheckCircle className="w-8 h-8 text-[#00e5a0]" />;
+  if (level === 1) return <AlertCircle className="w-8 h-8 text-[#fbbf24]" />;
+  return <ShieldAlert className="w-8 h-8 text-[#f87171]" />;
+};
+
+const getIcon = (iconName) => {
+  switch(iconName) {
+    case 'Thermometer': return <Thermometer className="w-5 h-5 text-[#00e5a0]" />;
+    case 'Wind': return <Wind className="w-5 h-5 text-blue-500" />;
+    case 'Droplets': return <Droplets className="w-5 h-5 text-sky-500" />;
+    default: return <Activity className="w-5 h-5 text-slate-400" />;
+  }
+};
+
 export default function App() {
   const [selectedCity, setSelectedCity] = useState("Delhi");
   const [cityLoading, setCityLoading] = useState(false);
@@ -157,26 +178,7 @@ export default function App() {
     }
   };
 
-  const getInsightText = (level) => {
-    if (level === 0) return "Air quality is safe";
-    if (level === 1) return "Moderate exposure risk detected";
-    return "High pollution – precaution advised";
-  };
 
-  const getInsightIcon = (level) => {
-    if (level === 0) return <CheckCircle className="w-8 h-8 text-[#00e5a0]" />;
-    if (level === 1) return <AlertCircle className="w-8 h-8 text-[#fbbf24]" />;
-    return <ShieldAlert className="w-8 h-8 text-[#f87171]" />;
-  };
-
-  const getIcon = (iconName) => {
-    switch(iconName) {
-      case 'Thermometer': return <Thermometer className="w-5 h-5 text-[#00e5a0]" />;
-      case 'Wind': return <Wind className="w-5 h-5 text-blue-500" />;
-      case 'Droplets': return <Droplets className="w-5 h-5 text-sky-500" />;
-      default: return <Activity className="w-5 h-5 text-slate-400" />;
-    }
-  };
 
   // Helper variables for theme switching class logic
   const bgMain = isDarkMode ? "bg-[#05080f]" : "bg-slate-50";
